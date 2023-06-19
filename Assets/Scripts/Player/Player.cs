@@ -1,34 +1,25 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Animator animator;
-    private bool isAttacking = false;
+    // Test
+    public float moveSpeed = 5f;
     void Start()
-    {
-        animator = gameObject.GetComponent<Animator>();   
+    {  
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Attack();
-        }
+        movement();
         
     }
-    private IEnumerator PlayAttackAnimation()
+    // Test
+    private void movement()
     {
-        isAttacking = true;
-        animator.SetTrigger("Attack");
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length / 2); isAttacking = false;
-    }
-    public void Attack()
-    {
-        if (!isAttacking)
-        {
-            StartCoroutine(PlayAttackAnimation());
-        }
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0f) * moveSpeed * Time.deltaTime;
+        transform.Translate(movement);
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerButtonController : MonoBehaviour
 {
-    public Player player;
+    public PlayerCombat playerCombat;
     void Start()
     {
         
     }
     public void normalAttack()
     {
-        player.Attack();
+        playerCombat.Attack();
     }
 }

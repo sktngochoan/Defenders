@@ -17049,7 +17049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc73e4168e990e14597a7b3c734cf2ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 50
   playerTransform: {fileID: 2139310671}
   joystick: {fileID: 1865946876}
 --- !u!1001 &7479401753586299316

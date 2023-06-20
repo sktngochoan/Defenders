@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class SkillsControllers : MonoBehaviour
 {
-    //1.
-    //2.
-    //3.
-    //4. Prefabs của skill Hasagi
     public GameObject hasagiPrefabs;
     public float shootForce = 10f;
     public HasagiSkill hasagiSkill;

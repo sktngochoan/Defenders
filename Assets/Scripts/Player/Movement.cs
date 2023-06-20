@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private VariableJoystick joystick;
 
-    private float moveDistance = 0.02f;
-    // Start is called before the first frame update
+    private float moveDistance;
     void Start()
     {
+        PlayerEntity playerEntity = GetComponent<PlayerEntity>();
         joystick.gameObject.SetActive(true);
+        moveDistance = playerEntity.Speed;
     }
-
-    // Update is called once per frame
     void Update()
     {
         var horizontalMove = Input.GetAxis("Horizontal");

@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
-    private bool isAttacking = false;
-
     public Transform AttackPoint;
-    public float normalAttackRange = 0.5f;
     public LayerMask enermyLayers;
+    private bool isAttacking = false;
+    public float normalAttackRange;
+    // Hasagi skill
+    public float shootForce = 10f;
+    public HasagiSkill hasagiSkill;
     void Start()
     {
+        PlayerEntity playerEntity = GetComponent<PlayerEntity>();
         animator = gameObject.GetComponent<Animator>();
+        normalAttackRange = playerEntity.AttackRange;
     }
     void Update()
     {
@@ -29,14 +33,17 @@ public class PlayerCombat : MonoBehaviour
         }
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length / 2); isAttacking = false;
     }
-    public void Attack()
+    public void NormalAttack()
     {
         if (!isAttacking)
         {
             StartCoroutine(PlayAttackAnimation());
         }
     }
-
+    public void HasagiSkill()
+    {
+        hasagiSkill.ActivateHasagiSkill();
+    }
     private void OnDrawGizmosSelected()
     {
         if (AttackPoint == null)

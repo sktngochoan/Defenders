@@ -51,7 +51,6 @@ public class HasagiSkill : MonoBehaviour
     private void HasagiFinishCooldown()
     {
         isCooldown = false;
-        Debug.Log("Hasagi skill is ready!");
         Destroy(hasagi);
     }
 }

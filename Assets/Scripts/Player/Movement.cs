@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private float speed;
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private VariableJoystick joystick;
+    [SerializeField] public VariableJoystick joystick;
+
+    public Rigidbody2D rigidbody2D;
+    public Animator animator;
+    public SpriteRenderer sprite;
+
+    private BaseState currentState;
 
     private float moveDistance;
     void Start()
@@ -13,6 +20,13 @@ public class Movement : MonoBehaviour
         PlayerEntity playerEntity = GetComponent<PlayerEntity>();
         joystick.gameObject.SetActive(true);
         moveDistance = playerEntity.Speed;
+
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+
+        currentState = new IdleState(this);
+        currentState.EnterState();
     }
     void Update()
     {
@@ -41,5 +55,28 @@ public class Movement : MonoBehaviour
             var pos = playerTransform.position;
             playerTransform.position = new Vector3(pos.x + moveX, pos.y + moveY, pos.z);
         }
+    }
+    private void FixedUpdate()
+    {
+        currentState.UpdateState();
+
+        float move = joystick.Horizontal;
+        rigidbody2D.velocity = new Vector2(move * speed, rigidbody2D.velocity.y);
+
+        if (move > 0)
+        {
+            sprite.flipX = false;
+        }
+        if (move < 0)
+        {
+            sprite.flipX = true;
+        }
+    }
+
+    public void ChangeState(BaseState newState)
+    {
+        currentState.ExitState();
+        currentState = newState;
+        currentState.EnterState();
     }
 }

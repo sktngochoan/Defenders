@@ -15,4 +15,9 @@ public class PlayerButtonController : MonoBehaviour
     {
         playerCombat.HasagiSkill();
     }
+
+    public void dashSkill()
+    {
+        playerCombat.DashSkill();
+    }
 }

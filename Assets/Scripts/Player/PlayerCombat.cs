@@ -12,14 +12,12 @@ public class PlayerCombat : MonoBehaviour
     // Hasagi skill
     public float shootForce = 10f;
     public HasagiSkill hasagiSkill;
+    public DashSkill dashSkill;
     void Start()
     {
         PlayerEntity playerEntity = GetComponent<PlayerEntity>();
         animator = gameObject.GetComponent<Animator>();
         normalAttackRange = playerEntity.AttackRange;
-    }
-    void Update()
-    {
     }
     private IEnumerator PlayAttackAnimation()
     {
@@ -43,6 +41,11 @@ public class PlayerCombat : MonoBehaviour
     public void HasagiSkill()
     {
         hasagiSkill.ActivateHasagiSkill();
+    }
+
+    public void DashSkill()
+    {
+        dashSkill.dash();
     }
     private void OnDrawGizmosSelected()
     {

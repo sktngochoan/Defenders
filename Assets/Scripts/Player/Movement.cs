@@ -1,19 +1,17 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float speed;
     [SerializeField] private Transform playerTransform;
     [SerializeField] public VariableJoystick joystick;
+    public GameObject swordRange;
 
-    public Rigidbody2D rigidbody2D;
+    private Rigidbody2D rigid2D;
     public Animator animator;
     public SpriteRenderer sprite;
-
     private BaseState currentState;
-
     private float moveDistance;
     void Start()
     {
@@ -21,35 +19,29 @@ public class Movement : MonoBehaviour
         joystick.gameObject.SetActive(true);
         moveDistance = playerEntity.Speed;
 
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigid2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
         currentState = new IdleState(this);
         currentState.EnterState();
+
+        
     }
     void Update()
     {
-        var horizontalMove = Input.GetAxis("Horizontal");
-        var verticalMove = Input.GetAxis("Vertical");
-
-        horizontalMove = joystick.Horizontal;
-        verticalMove = joystick.Vertical;
-
-        float moveX = 0;
-
-        if (horizontalMove != 0)
+        float hori = 0;
+        float verti = 0;
+        if(joystick.Horizontal != 0)
         {
-            moveX = horizontalMove < 0 ? -moveDistance : moveDistance;
+            hori = joystick.Horizontal > 0 ? 1 : -1;
         }
-
-        float moveY = 0;
-
-        if (verticalMove != 0)
+        if (joystick.Vertical != 0)
         {
-            moveY = verticalMove < 0 ? -moveDistance : moveDistance;
+            verti = joystick.Vertical > 0 ? 1 : -1;
         }
-
+        float moveX = hori * moveDistance;
+        float moveY = verti * moveDistance;
         if (moveX != 0 || moveY != 0)
         {
             var pos = playerTransform.position;
@@ -59,20 +51,31 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         currentState.UpdateState();
-
         float move = joystick.Horizontal;
-        rigidbody2D.velocity = new Vector2(move * speed, rigidbody2D.velocity.y);
+        rigid2D.velocity = new Vector2(move * moveDistance, rigid2D.velocity.y);
 
         if (move > 0)
         {
+            if (swordRange.transform.localScale.x < 0)
+            {
+                swordRange.transform.localScale *= -1;
+                swordRange.transform.localPosition = new Vector3(swordRange.transform.localPosition.x * -1, swordRange.transform.localPosition.y, 0);
+            }
             sprite.flipX = false;
+            
         }
         if (move < 0)
         {
+            if (swordRange.transform.localScale.x > 0)
+            {
+                swordRange.transform.localScale *= -1;
+                swordRange.transform.localPosition = new Vector3(swordRange.transform.localPosition.x * -1, swordRange.transform.localPosition.y, 0);
+            }
             sprite.flipX = true;
+            
         }
     }
-
+    
     public void ChangeState(BaseState newState)
     {
         currentState.ExitState();

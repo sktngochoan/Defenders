@@ -7,10 +7,10 @@ public class DashSkill : MonoBehaviour
     // Dash
     [SerializeField]
     private float dashDistance = 4f;
-    [SerializeField]
-    private float dashDuration = 1f;
-    [SerializeField]
-    private float dashCooldown = 1f;
+    //[SerializeField]
+    //private float dashDuration = 1f;
+    //[SerializeField]
+    //private float dashCooldown = 1f;
     [SerializeField] public VariableJoystick joystick;
     [SerializeField]
     private LayerMask dashLayerMask;

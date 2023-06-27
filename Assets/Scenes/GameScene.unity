@@ -13905,12 +13905,12 @@ PrefabInstance:
     - target: {fileID: 4093018524543768112, guid: f8e0ecc63880f0d43a6ad0b351b89b0d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4093018524543768112, guid: f8e0ecc63880f0d43a6ad0b351b89b0d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4093018524543768112, guid: f8e0ecc63880f0d43a6ad0b351b89b0d,
         type: 3}
@@ -13920,7 +13920,7 @@ PrefabInstance:
     - target: {fileID: 4093018524543768112, guid: f8e0ecc63880f0d43a6ad0b351b89b0d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.27
       objectReference: {fileID: 0}
     - target: {fileID: 4093018524543768112, guid: f8e0ecc63880f0d43a6ad0b351b89b0d,
         type: 3}
@@ -14018,14 +14018,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 306745547}
     - target: {fileID: 2139310683, guid: 9793adf0ab3554149b855760b1e914c9, type: 3}
+      propertyPath: lvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139310683, guid: 9793adf0ab3554149b855760b1e914c9, type: 3}
       propertyPath: speed
-      value: 0.05
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139310683, guid: 9793adf0ab3554149b855760b1e914c9, type: 3}
+      propertyPath: damage
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7479401752017681382, guid: 9793adf0ab3554149b855760b1e914c9,
         type: 3}
       propertyPath: dashSkill
       value: 
       objectReference: {fileID: 478139384}
+    - target: {fileID: 7479401752017681382, guid: 9793adf0ab3554149b855760b1e914c9,
+        type: 3}
+      propertyPath: enermyLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7479401752017681401, guid: 9793adf0ab3554149b855760b1e914c9,
         type: 3}
       propertyPath: m_Name
@@ -14049,7 +14062,7 @@ PrefabInstance:
     - target: {fileID: 7479401752017681403, guid: 9793adf0ab3554149b855760b1e914c9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: 7479401752017681403, guid: 9793adf0ab3554149b855760b1e914c9,
         type: 3}

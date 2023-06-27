@@ -9,7 +9,8 @@ public class PlayerNormalEnemy : PlayerEnemy
     {
         slowSpeed = 2;
         hp = 35;
-        speed = 7f;
+        currentHp = hp;
+        speed = 1f;
         damage = 10;
         exp = 7;
         isSlow = false;

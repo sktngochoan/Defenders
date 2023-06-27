@@ -7,7 +7,8 @@ public class TowerSpecialEnemy : TowerEnemy
     void Start()
     {
         hp = 35;
-        speed = 7f;
+        currentHp = hp;
+        speed = 1.5f;
         damage = 15;
         exp = 7;
         isSlow = false;

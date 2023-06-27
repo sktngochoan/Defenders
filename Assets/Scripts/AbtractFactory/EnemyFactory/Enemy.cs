@@ -10,17 +10,25 @@ public abstract class Enemy : MonoBehaviour
     public float damage;
     public bool isSlow;
 
+    public Transform towerTransform;
+    public Transform playerTransform;
     public enum EnemyType
     {
         PlayerEnemy,
         TowerEnemy
     }
+    public void Start()
+    {
+        this.towerTransform = towerTransform;
+        this.playerTransform = playerTransform;
+
+    }
     public abstract EnemyType GetEnemyType();
+    public abstract void Movement();
     void Update()
     {
-        transform.Translate(Vector3.right * (speed * Time.deltaTime));
+        Movement();
     }
-
     private void OnCollisionEnter2D(Collision2D col)
     {
         //if (col.gameObject.CompareTag("Wall"))

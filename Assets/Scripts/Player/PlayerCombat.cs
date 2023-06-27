@@ -13,9 +13,10 @@ public class PlayerCombat : MonoBehaviour
     public float shootForce = 10f;
     public HasagiSkill hasagiSkill;
     public DashSkill dashSkill;
+    public PlayerEntity playerEntity;
     void Start()
     {
-        PlayerEntity playerEntity = GetComponent<PlayerEntity>();
+        playerEntity = GetComponent<PlayerEntity>();
         animator = gameObject.GetComponent<Animator>();
         normalAttackRange = playerEntity.AttackRange;
     }
@@ -27,7 +28,9 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnermy =  Physics2D.OverlapCircleAll(AttackPoint.position, normalAttackRange, enermyLayers);
         foreach (Collider2D item in hitEnermy)
         {
-            Debug.Log("A a a" + item.name);
+            Enemy e = item.GetComponent<Enemy>();
+            e.currentHp -= playerEntity.Damage;
+            e.onHit(gameObject.transform);
         }
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length / 2); isAttacking = false;
     }

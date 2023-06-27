@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     public GameObject FacD;
     private void Start()
     {
-        InvokeRepeating(nameof(CreateEnemy), 3, 2);
+        InvokeRepeating(nameof(CreateEnemy), 3, 5f);
     }
 
     public void CreateEnemy()

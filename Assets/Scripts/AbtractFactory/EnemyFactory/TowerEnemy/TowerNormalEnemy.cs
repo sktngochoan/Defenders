@@ -7,10 +7,15 @@ public class TowerNormalEnemy : TowerEnemy
     void Start()
     {
         hp = 50;
-        currentHp = hp;
         speed = 1f;
         damage = 20;
         exp = 4;
         isSlow = false;
+        if (isBoss == true)
+        {
+            base.InitializeBossStats();
+        }
+        currentHp = hp;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 }

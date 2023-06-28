@@ -4,13 +4,11 @@ using UnityEngine;
 
 public abstract class BaseState 
 {
-    protected Movement player;
-
-    public BaseState(Movement player)
+    protected PlayerController player;
+    public BaseState(PlayerController player)
     {
         this.player = player;
     }
-
     public virtual void EnterState() { }
     public virtual void UpdateState() { }
     public virtual void ExitState() { }

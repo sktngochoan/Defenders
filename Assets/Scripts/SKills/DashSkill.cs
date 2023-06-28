@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DashSkill : MonoBehaviour
@@ -7,10 +8,8 @@ public class DashSkill : MonoBehaviour
     // Dash
     [SerializeField]
     private float dashDistance = 4f;
-    //[SerializeField]
-    //private float dashDuration = 1f;
-    //[SerializeField]
-    //private float dashCooldown = 1f;
+    [SerializeField]
+    private float dashCooldown = 5f;
     [SerializeField] public VariableJoystick joystick;
     [SerializeField]
     private LayerMask dashLayerMask;
@@ -29,12 +28,15 @@ public class DashSkill : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            StartCoroutine(dash());
+            dash();
         }
     }
-    public IEnumerator dash()
+    public void dash()
     {
-        isDashing = true;
+        if(isDashing)
+        {
+            return;
+        }
         var horizontalMoveJoystick = joystick.Horizontal;
         var verticalMoveJoystick = joystick.Vertical;
         var dashDirection = new Vector2(horizontalMoveJoystick, verticalMoveJoystick).normalized;
@@ -55,15 +57,22 @@ public class DashSkill : MonoBehaviour
             {
                 dashTargetPosition = raycastHit2d.point - new Vector2(-1 , 1);
             }
-            yield return null;
         }
         var currentVelocity = rigid2D.velocity;
         while (Vector2.Distance(player.transform.position, dashTargetPosition) > 0.1f)
         {
             player.transform.position = Vector2.MoveTowards(player.transform.position, dashTargetPosition, 0.1f);
-            yield return null;
         }
         rigid2D.velocity = currentVelocity;
+        StartCooldown();
+    }
+    private void StartCooldown()
+    {
+        isDashing = true;
+        Invoke("DashFinishCooldown", dashCooldown);
+    }
+    private void DashFinishCooldown()
+    {
         isDashing = false;
     }
 }

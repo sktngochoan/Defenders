@@ -45,7 +45,6 @@ public class HasagiSkill : MonoBehaviour
     {
         isCooldown = true;
         Invoke("HasagiFinishCooldown", hasagi_coolDown);
-
     }
     private void HasagiFinishCooldown()
     {

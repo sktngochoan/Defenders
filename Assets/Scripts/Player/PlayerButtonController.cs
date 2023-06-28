@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerButtonController : MonoBehaviour
 {
     public PlayerCombat playerCombat;
-
     public void normalAttack()
     {
         playerCombat.NormalAttack();

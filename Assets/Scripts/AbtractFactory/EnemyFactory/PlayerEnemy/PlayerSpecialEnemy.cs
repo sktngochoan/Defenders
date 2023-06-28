@@ -13,10 +13,15 @@ public class PlayerSpecialEnemy : PlayerEnemy
         explosion_distance = 3;
         explosion_time = 2;
         hp = 10;
-        currentHp = hp;
         speed = 1.5f;
         damage = 5;
         exp = 7;
         isSlow = false;
+        if(isBoss == true)
+        {
+            base.InitializeBossStats();
+        }
+        currentHp = hp;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 }

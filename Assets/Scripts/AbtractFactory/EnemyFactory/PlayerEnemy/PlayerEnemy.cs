@@ -8,4 +8,10 @@ public class PlayerEnemy : Enemy
     {
         return EnemyType.PlayerEnemy;
     }
+    public override void InitializeBossStats()
+    {
+        hp *= 3;
+        damage *= 2;
+        exp *= 2;
+    }
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RunningState : BaseState
 {
-    public RunningState(Movement player) : base(player) { }
-
+    public RunningState(PlayerController player) : base(player) { }
     public override void EnterState()
     {
         player.animator.SetFloat("Run", Mathf.Abs(player.joystick.Horizontal));
@@ -18,6 +17,10 @@ public class RunningState : BaseState
         if (Mathf.Abs(move) == 0)
         {
             player.ChangeState(new IdleState(player));
+        }
+        if(player.playerEntity.HP <= 0)
+        {
+            player.ChangeState(new DeadState(player));
         }
     }
 }

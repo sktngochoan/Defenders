@@ -9,10 +9,15 @@ public class PlayerNormalEnemy : PlayerEnemy
     {
         slowSpeed = 2;
         hp = 35;
-        currentHp = hp;
         speed = 1f;
         damage = 10;
         exp = 7;
         isSlow = false;
+        if (isBoss == true)
+        {
+            base.InitializeBossStats();
+        }
+        currentHp = hp;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 }

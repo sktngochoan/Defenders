@@ -26,9 +26,13 @@ public class Client : MonoBehaviour
             if (_factoryBuildings[i] == null || _factoryBuildings[i].GetComponent<EnemyFactory>() == null) continue;
 
             // Create random bullet
-            if (Random.Range(0, 2) != 0)
+            if (Random.Range(0, 3) == 0)
             {
                 _factoryBuildings[i].GetComponent<EnemyFactory>().CreateNormalEnemy();
+            }
+            else if (Random.Range(0, 3) == 1)
+            {
+                _factoryBuildings[i].GetComponent<EnemyFactory>().CreateBoss();
             }
             else
             {

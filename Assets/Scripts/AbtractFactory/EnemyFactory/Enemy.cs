@@ -13,6 +13,8 @@ public abstract class Enemy : MonoBehaviour
     public bool isBoss = false;
     public FloatingHealthBar healthBar;
     public Rigidbody2D rb;
+    public Transform towerTransform;
+    public Transform playerTransform;
     public enum EnemyType
     {
         PlayerEnemy,
@@ -20,9 +22,11 @@ public abstract class Enemy : MonoBehaviour
     }
     public abstract EnemyType GetEnemyType();
     public abstract void InitializeBossStats();
+    public abstract void Movement();
     void Update()
     {
-        rb.velocity = new Vector2(speed, rb.velocity.y);
+        //rb.velocity = new Vector2(speed, rb.velocity.y);
+        Movement();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -31,6 +35,12 @@ public abstract class Enemy : MonoBehaviour
         //{
         //    Destroy(gameObject);
         //}
+    }
+    public void Start()
+    {
+        this.towerTransform = towerTransform;
+        this.playerTransform = playerTransform;
+
     }
 
     public void onHit(Transform playerTransform)

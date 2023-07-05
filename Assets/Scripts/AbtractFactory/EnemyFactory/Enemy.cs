@@ -38,8 +38,6 @@ public abstract class Enemy : MonoBehaviour
     }
     public void Start()
     {
-        this.towerTransform = towerTransform;
-        this.playerTransform = playerTransform;
 
     }
 

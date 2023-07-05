@@ -6,7 +6,8 @@ public class TowerEnemy : Enemy
 {
     public float attackRange = 5f; 
 
-    private bool isAttacking = false; 
+    private bool isAttacking = false;
+    public Transform towerTransformx;
 
     public override EnemyType GetEnemyType()
     {
@@ -18,13 +19,10 @@ public class TowerEnemy : Enemy
         damage *= 2;
         exp *= 2;
     }
-    public void Start()
-    {
-        base.Start();
-    }
     public override void Movement()
     {
-        Vector3 targetPosition = towerTransform.position;
+        towerTransformx = GameObject.FindGameObjectWithTag("Tower").transform;
+        Vector3 targetPosition = towerTransformx.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         if (Vector3.Distance(transform.position, targetPosition) <= attackRange)
         {

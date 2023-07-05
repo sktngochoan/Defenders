@@ -581,4 +581,9 @@ MonoBehaviour:
   damage: 0
   isSlow: 0
   currentHp: 0
+  isBoss: 0
   healthBar: {fileID: 1775917306}
+  rb: {fileID: 0}
+  towerTransform: {fileID: 0}
+  playerTransform: {fileID: 0}
+  attackRange: 5

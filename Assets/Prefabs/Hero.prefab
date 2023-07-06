@@ -281,6 +281,7 @@ MonoBehaviour:
   playerTransform: {fileID: 7479401752017681403}
   joystick: {fileID: 0}
   healthBar: {fileID: 0}
+  expBar: {fileID: 0}
   playerEntity: {fileID: 0}
   swordRange: {fileID: 7479401752451007495}
   animator: {fileID: 0}
@@ -299,9 +300,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lvl: 1
   hp: 100
+  currentHp: 100
   speed: 5
-  damage: 10
-  exp: 20
+  damage: 20
+  exp: 5
+  currentExp: 0
   attackRange: 0.7
 --- !u!1 &7479401752451007495
 GameObject:

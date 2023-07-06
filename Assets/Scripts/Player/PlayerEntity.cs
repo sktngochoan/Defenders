@@ -19,6 +19,13 @@ public class PlayerEntity : MonoBehaviour
         set { hp = value; }
     }
     [SerializeField]
+    private float currentHp;
+    public float CurrentHp
+    {
+        get { return currentHp; }
+        set { currentHp = value; }
+    }
+    [SerializeField]
     private float speed;
     public float Speed
     {
@@ -40,6 +47,13 @@ public class PlayerEntity : MonoBehaviour
         set { exp = value; }
     }
     [SerializeField]
+    private float currentExp;
+    public float CurrentExp
+    {
+        get { return currentExp; }
+        set { currentExp = value; }
+    }
+    [SerializeField]
     private float attackRange;
     public float AttackRange
     {
@@ -49,8 +63,10 @@ public class PlayerEntity : MonoBehaviour
     public void UpdateLv()
     {
         HP = HP + 10;
-        Damage = Damage + lvl;
+        CurrentHp = HP;
+        Damage = Damage + 10;
         exp = exp + lvl * 5;
+        CurrentExp = 0;
         lvl = lvl + 1;
     }
 }

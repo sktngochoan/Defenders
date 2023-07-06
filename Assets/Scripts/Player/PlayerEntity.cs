@@ -62,11 +62,22 @@ public class PlayerEntity : MonoBehaviour
     }
     public void UpdateLv()
     {
+        UpdateEntity();
+        UpdateSkill();
+    }
+
+    public void UpdateEntity()
+    {
         HP = HP + 10;
         CurrentHp = HP;
         Damage = Damage + 10;
         exp = exp + lvl * 5;
         CurrentExp = 0;
         lvl = lvl + 1;
+    }
+
+    public void UpdateSkill()
+    {
+        GameManager.Instance.ActiveUpdateSystem();
     }
 }

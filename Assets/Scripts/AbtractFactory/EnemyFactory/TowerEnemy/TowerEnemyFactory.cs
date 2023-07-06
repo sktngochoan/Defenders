@@ -13,8 +13,8 @@ public class TowerEnemyFactory : EnemyFactory
         var normalEnemy = Resources.Load(NormalEnemy) as GameObject;
         if (normalEnemy != null)
         {
-            GameObject slowBullet = Instantiate(normalEnemy, new Vector2(factoryTransformPosition.x, factoryTransformPosition.y), Quaternion.identity);
-            return slowBullet;
+            GameObject NormalEnemy = Instantiate(normalEnemy, new Vector2(factoryTransformPosition.x, factoryTransformPosition.y), Quaternion.identity);
+            return NormalEnemy;
         }
         else
         {
@@ -28,8 +28,8 @@ public class TowerEnemyFactory : EnemyFactory
         var specialEnemy = Resources.Load(SpecialEnemy) as GameObject;
         if (specialEnemy != null)
         {
-            GameObject fastBullet = Instantiate(specialEnemy, new Vector2(factoryTransformPosition.x, factoryTransformPosition.y), Quaternion.identity);
-            return fastBullet;
+            GameObject SpecialEnemy = Instantiate(specialEnemy, new Vector2(factoryTransformPosition.x, factoryTransformPosition.y), Quaternion.identity);
+            return SpecialEnemy;
         }
         else
         {

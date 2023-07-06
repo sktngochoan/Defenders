@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour
     public bool isSlow;
     public float currentHp;
     public bool isBoss = false;
+    public int typePool;
     public FloatingHealthBar healthBar;
     public Rigidbody2D rb;
     public Transform towerTransform;
@@ -56,7 +57,8 @@ public abstract class Enemy : MonoBehaviour
     {
         if(currentHp <= 0)
         {
-            Destroy(gameObject);
+            EnermyGenerator.Instance.ReturnEnemy(gameObject, typePool);
+            //Destroy(gameObject);
         }
     }
 }

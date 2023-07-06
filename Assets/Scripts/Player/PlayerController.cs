@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] public VariableJoystick joystick;
     [SerializeField] private FloatingHealthBar healthBar;
+    [SerializeField] private FloatingExpBar expBar;
     public PlayerEntity playerEntity;
     public GameObject swordRange;
 
@@ -38,24 +39,6 @@ public class PlayerController : MonoBehaviour
         move.y = joystick.Vertical;
         Vector2 direction = new Vector2(move.x, move.y).normalized;
         rigid2D.MovePosition(rigid2D.position + direction * speed * Time.fixedDeltaTime);
-
-        //float hori = 0;
-        //float verti = 0;
-        //if(joystick.Horizontal != 0)
-        //{
-        //    hori = joystick.Horizontal > 0 ? 1 : -1;
-        //}
-        //if (joystick.Vertical != 0)
-        //{
-        //    verti = joystick.Vertical > 0 ? 1 : -1;
-        //}
-        //float moveX = hori * moveDistance;
-        //float moveY = verti * moveDistance;
-        //if (moveX != 0 || moveY != 0)
-        //{
-        //    var pos = playerTransform.position;
-        //    playerTransform.position = new Vector3(pos.x + moveX, pos.y + moveY, pos.z);
-        //}
     }
     private void FixedUpdate()
     {
@@ -90,15 +73,18 @@ public class PlayerController : MonoBehaviour
         currentState = newState;
         currentState.EnterState();
     }
-
+    public void changeExp()
+    {
+        expBar.UpdateExpBar(playerEntity.CurrentExp,playerEntity.Exp);
+    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
             Enemy enemyEntity = col.gameObject.GetComponent<Enemy>();
-            healthBar.UpdateHealthBar(playerEntity.HP - enemyEntity.damage, playerEntity.HP);
-            playerEntity.HP -= enemyEntity.damage;
-            Debug.Log(playerEntity.HP);
+            playerEntity.CurrentHp = playerEntity.CurrentHp - enemyEntity.damage;
+            healthBar.UpdateHealthBar(playerEntity.CurrentHp, playerEntity.HP);
+            //playerEntity.HP -= enemyEntity.damage;
         }
     }
 }

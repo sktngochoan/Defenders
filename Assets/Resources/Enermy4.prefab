@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: -8557652174351416335}
   m_Layer: 8
   m_Name: Enermy4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -547,7 +547,14 @@ MonoBehaviour:
   damage: 0
   isSlow: 0
   currentHp: 0
+  isBoss: 0
+  typePool: 0
   healthBar: {fileID: 440858231}
+  rb: {fileID: 0}
+  towerTransform: {fileID: 0}
+  playerTransform: {fileID: 0}
+  attackRange: 5
+  playerTransformx: {fileID: 0}
   explosion_damage: 0
   explosion_distance: 0
   explosion_time: 0

@@ -26,22 +26,8 @@ public abstract class Enemy : MonoBehaviour
     public abstract void Movement();
     void Update()
     {
-        //rb.velocity = new Vector2(speed, rb.velocity.y);
         Movement();
     }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        //if (col.gameObject.CompareTag("Wall"))
-        //{
-        //    Destroy(gameObject);
-        //}
-    }
-    public void Start()
-    {
-
-    }
-
     public void onHit(Transform playerTransform)
     {
         isDead();
@@ -58,7 +44,21 @@ public abstract class Enemy : MonoBehaviour
         if(currentHp <= 0)
         {
             EnermyGenerator.Instance.ReturnEnemy(gameObject, typePool);
+            updateExp();
             //Destroy(gameObject);
         }
+    }
+
+    private void updateExp()
+    {
+        GameObject player = GameObject.Find("Hero");
+        PlayerController controller = player.GetComponent<PlayerController>();
+        PlayerEntity entity = player.GetComponent<PlayerEntity>();
+        entity.CurrentExp += exp;
+        if (entity.CurrentExp >= entity.Exp)
+        {
+            entity.UpdateLv();
+        }
+        controller.changeExp();
     }
 }

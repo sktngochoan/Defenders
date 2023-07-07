@@ -6,13 +6,13 @@ using UnityEngine;
 public class EnermyGenerator : MonoBehaviour
 {
     public static EnermyGenerator Instance;
-    public GameObject[] enemyPrefabs; 
+    public GameObject[] enemyPrefabs;
     public GameObject[] spawnPoints;
-    public float spawnInterval = 5f; 
-    public int initialPoolSize = 20; 
-    public int maxPoolSize = 50; 
+    public float spawnInterval = 5f;
+    public int initialPoolSize = 20;
+    public int maxPoolSize = 50;
     private List<GameObject>[] enemyPool;
-    private readonly Transform[] _factoryBuildings = new Transform[4];
+    private readonly Transform[] factoryBuildings = new Transform[4];
 
     private void Awake()
     {
@@ -21,32 +21,26 @@ public class EnermyGenerator : MonoBehaviour
         InitializePool();
         StartCoroutine(SpawnEnemies());
     }
+
     public void AssignFactoryToBuilding()
     {
-        for(int i = 0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
             Transform turretTransform = null;
             CreateFactory(i, spawnPoints[i], out turretTransform);
-            // sửa lại đoạn này thành 0 - 2
-            // Tạo ra 4 loại
-            int randomEnemy = Random.Range(0, 1);
+
+            int randomEnemy = Random.Range(0, 2);
             if (randomEnemy == 0)
             {
-                TowerEnemyFactory TowerFactory = turretTransform.gameObject.AddComponent<TowerEnemyFactory>();
-                TowerFactory.TurretTransform = turretTransform;
+                TowerEnemyFactory towerFactory = turretTransform.gameObject.AddComponent<TowerEnemyFactory>();
+                towerFactory.TurretTransform = turretTransform;
             }
             else
             {
-                PlayerEnemyFactory PlayerFactory = turretTransform.gameObject.AddComponent<PlayerEnemyFactory>();
-                PlayerFactory.TurretTransform = turretTransform;
+                PlayerEnemyFactory playerFactory = turretTransform.gameObject.AddComponent<PlayerEnemyFactory>();
+                playerFactory.TurretTransform = turretTransform;
             }
         }
-        
-        //CreateFactory(0, spawnPoints[0], out turretTransform);
-      //  CreateFactory(2, spawnPoints[2], out turretTransform);
-      //  CreateFactory(3, spawnPoints[3], out turretTransform);
-
-        
     }
 
     private void InitializePool()
@@ -63,6 +57,7 @@ public class EnermyGenerator : MonoBehaviour
             }
         }
     }
+
     public void SpawnEnemyOnLoad(List<EnemyModel> enemyModels)
     {
         foreach (EnemyModel model in enemyModels)
@@ -88,6 +83,7 @@ public class EnermyGenerator : MonoBehaviour
             enemy.SetActive(true);
         }
     }
+
     private IEnumerator SpawnEnemies()
     {
         while (true)
@@ -110,57 +106,41 @@ public class EnermyGenerator : MonoBehaviour
                 }
             }
             int spawnIndex = Random.Range(0, spawnPoints.Length);
-            //Transform spawnPoint = spawnPoints[spawnIndex].transform;
             enemy.transform.position = spawnPoints[spawnIndex].transform.position;
             enemy.transform.rotation = spawnPoints[spawnIndex].transform.rotation;
             enemy.SetActive(true);
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-    
+
     private GameObject CreateEnemy(int enemyIndex)
     {
-        int typeE = Random.Range(0, 2);
-        int ranFac = Random.Range(0, _factoryBuildings.Length);
-        // Create random
-        GameObject enemy = null;
-        if (typeE == 0)
-        {
-            enemy = _factoryBuildings[1].GetComponent<EnemyFactory>().CreateNormalEnemy();
-        }
-        else if (typeE == 1)
-        {
-            enemy = _factoryBuildings[1].GetComponent<EnemyFactory>().CreateSpecialEnemy();
-        }
-        else
-        {
-            enemy = _factoryBuildings[1].GetComponent<EnemyFactory>().CreateBoss();
-        }
+        GameObject enemyPrefab = enemyPrefabs[enemyIndex];
+        GameObject enemy = Instantiate(enemyPrefab);
         enemy.SetActive(false);
         enemyPool[enemyIndex].Add(enemy);
         return enemy;
     }
-    public void ReturnEnemy(GameObject enemy,int enemyIndex)
+
+    public void ReturnEnemy(GameObject enemy, int enemyIndex)
     {
         enemy.SetActive(false);
         enemyPool[enemyIndex].Add(enemy);
     }
-    private Transform CreateFactoryBuilding(GameObject Fac)
+
+    private Transform CreateFactoryBuilding(GameObject factory)
     {
-        Transform newFactory = Instantiate(Fac.transform, new Vector2(Fac.transform.position.x, Fac.transform.position.y), Quaternion.identity);
+        Transform newFactory = Instantiate(factory.transform, factory.transform.position, Quaternion.identity);
         return newFactory;
     }
 
-    private void CreateFactory(int arrayPosition, GameObject Factory, out Transform factoryBuildingTransform)
+    private void CreateFactory(int arrayPosition, GameObject factory, out Transform factoryBuildingTransform)
     {
-        if (_factoryBuildings[arrayPosition] == null)
+        if (factoryBuildings[arrayPosition] == null)
         {
-            _factoryBuildings[arrayPosition] = CreateFactoryBuilding(Factory);
-            factoryBuildingTransform = _factoryBuildings[arrayPosition];
+            factoryBuildings[arrayPosition] = CreateFactoryBuilding(factory);
         }
-        else
-        {
-            factoryBuildingTransform = _factoryBuildings[arrayPosition];
-        }
+
+        factoryBuildingTransform = factoryBuildings[arrayPosition];
     }
 }

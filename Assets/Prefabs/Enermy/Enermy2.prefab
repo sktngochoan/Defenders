@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 625652297443934408}
   m_Layer: 8
   m_Name: Enermy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -548,7 +548,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &625652297443934408
 MonoBehaviour:
@@ -568,4 +568,13 @@ MonoBehaviour:
   damage: 0
   isSlow: 0
   currentHp: 0
+  currentHpOnLoad: 0
+  isBoss: 0
+  isLoad: 0
+  typePool: 0
   healthBar: {fileID: 2045161091}
+  rb: {fileID: 0}
+  towerTransform: {fileID: 0}
+  playerTransform: {fileID: 0}
+  attackRange: 5
+  towerTransformx: {fileID: 0}

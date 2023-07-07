@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UpdateSystem : MonoBehaviour
 {
+    public HasagiSkill hasagiSkill;
+
     public void UpdateHasagi()
     {
         Debug.Log(1);

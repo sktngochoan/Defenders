@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
             playerEntity.CurrentHp = playerEntity.CurrentHp - enemyEntity.damage;
             changeHp();
             //playerEntity.HP -= enemyEntity.damage;
+
         }
     }
 }

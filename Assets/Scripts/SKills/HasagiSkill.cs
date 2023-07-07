@@ -40,6 +40,10 @@ public class HasagiSkill : MonoBehaviour
         }
         StartCooldown();
     }
+    public void UpdateHasagiSkill()
+    {
+        hasagi_coolDown = hasagi_coolDown - 0.5f;
+    }
 
     private void StartCooldown()
     {

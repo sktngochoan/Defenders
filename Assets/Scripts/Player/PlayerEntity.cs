@@ -70,14 +70,33 @@ public class PlayerEntity : MonoBehaviour
     {
         HP = HP + 10;
         CurrentHp = HP;
-        Damage = Damage + 10;
+        Damage = Damage + 1;
         exp = exp + lvl * 5;
         CurrentExp = 0;
         lvl = lvl + 1;
+        UpdateStatusBar();
     }
-
+    
     public void UpdateSkill()
     {
         GameManager.Instance.ActiveUpdateSystem();
+    }
+
+    public void UpdateEntityWithLv(int lv,float HpSave, float ExpSave)
+    {
+        HP = HP + 10 * lv;
+        Damage = Damage + 1 * lv;
+        exp = exp + lv * 5;
+        lvl = lv;
+        currentExp = ExpSave;
+        currentHp = HpSave;
+        UpdateStatusBar();
+    }
+
+    public void UpdateStatusBar()
+    {
+        PlayerController playerController = gameObject.GetComponent<PlayerController>();
+        playerController.changeHp();
+        playerController.changeExp();
     }
 }

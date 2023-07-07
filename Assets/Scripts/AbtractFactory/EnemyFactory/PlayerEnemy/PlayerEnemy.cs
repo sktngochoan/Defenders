@@ -19,7 +19,10 @@ public class PlayerEnemy : Enemy
         damage *= 2;
         exp *= 2;
     }
-  
+    public override void InitializeOnLoad()
+    {
+        currentHp = currentHpOnLoad;
+    }
     public override void Movement()
     {
         // if (playerTransform != null && !isAttacking)

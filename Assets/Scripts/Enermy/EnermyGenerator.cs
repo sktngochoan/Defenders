@@ -8,7 +8,7 @@ public class EnermyGenerator : MonoBehaviour
     public static EnermyGenerator Instance;
     public GameObject[] enemyPrefabs; 
     public GameObject[] spawnPoints;
-    public float spawnInterval = 2f; 
+    public float spawnInterval = 5f; 
     public int initialPoolSize = 20; 
     public int maxPoolSize = 50; 
     private List<GameObject>[] enemyPool;
@@ -63,7 +63,31 @@ public class EnermyGenerator : MonoBehaviour
             }
         }
     }
-
+    public void SpawnEnemyOnLoad(List<EnemyModel> enemyModels)
+    {
+        foreach (EnemyModel model in enemyModels)
+        {
+            int enemyIndex = Random.Range(0, enemyPrefabs.Length);
+            List<GameObject> pool = enemyPool[model.typePool];
+            GameObject enemy = pool.Find(e => !e.activeInHierarchy);
+            if (enemy == null)
+            {
+                if (pool.Count < maxPoolSize)
+                {
+                    enemy = CreateEnemy(enemyIndex);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            Enemy enemyEntity = enemy.GetComponent<Enemy>();
+            enemy.transform.position = model.position;
+            enemyEntity.currentHpOnLoad = model.currentHp;
+            enemyEntity.isLoad = true;
+            enemy.SetActive(true);
+        }
+    }
     private IEnumerator SpawnEnemies()
     {
         while (true)

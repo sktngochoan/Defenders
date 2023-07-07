@@ -10,7 +10,9 @@ public abstract class Enemy : MonoBehaviour
     public float damage;
     public bool isSlow;
     public float currentHp;
+    public float currentHpOnLoad;
     public bool isBoss = false;
+    public bool isLoad = false;
     public int typePool;
     public FloatingHealthBar healthBar;
     public Rigidbody2D rb;
@@ -23,6 +25,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public abstract EnemyType GetEnemyType();
     public abstract void InitializeBossStats();
+    public abstract void InitializeOnLoad();
     public abstract void Movement();
     void Update()
     {
@@ -35,9 +38,10 @@ public abstract class Enemy : MonoBehaviour
         Vector2 knockback_direaction = gameObject.transform.position - playerTransform.position;
         transform.position = new Vector2(transform.position.x + knockback_direaction.x / 2, transform.position.y);
     }
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         healthBar.UpdateHealthBar(currentHp, hp);
+        Debug.Log(currentHp);
     }
     public void isDead()
     {

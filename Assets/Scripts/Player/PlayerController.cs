@@ -77,13 +77,18 @@ public class PlayerController : MonoBehaviour
     {
         expBar.UpdateExpBar(playerEntity.CurrentExp,playerEntity.Exp);
     }
+
+    public void changeHp()
+    {
+        healthBar.UpdateHealthBar(playerEntity.CurrentHp, playerEntity.HP);
+    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
             Enemy enemyEntity = col.gameObject.GetComponent<Enemy>();
             playerEntity.CurrentHp = playerEntity.CurrentHp - enemyEntity.damage;
-            healthBar.UpdateHealthBar(playerEntity.CurrentHp, playerEntity.HP);
+            changeHp();
             //playerEntity.HP -= enemyEntity.damage;
         }
     }

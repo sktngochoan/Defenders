@@ -19,6 +19,11 @@ public class TowerEnemy : Enemy
         damage *= 2;
         exp *= 2;
     }
+
+    public override void InitializeOnLoad()
+    {
+        currentHp = currentHpOnLoad;
+    }
     public override void Movement()
     {
         towerTransformx = GameObject.FindGameObjectWithTag("Tower").transform;

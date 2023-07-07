@@ -9,6 +9,7 @@ public class UpdateSystem : MonoBehaviour
     public void UpdateHasagi()
     {
         Debug.Log(1);
+        hasagiSkill.UpdateHasagiSkill();
         GameManager.Instance.DeActiveUpdateSystem();
     }
 

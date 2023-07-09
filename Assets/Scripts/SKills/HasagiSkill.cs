@@ -6,7 +6,7 @@ public class HasagiSkill : MonoBehaviour
 {
     [SerializeField] private VariableJoystick joystick;
     public int hasagi_level = 1;
-    public float hasagi_coolDown = 10f;
+    public float hasagi_coolDown = 2f;
     public float hasagi_damage = 9999f;
     public float hasagi_distance = 10f;
     public float hasagi_speed = 10f;
@@ -40,15 +40,25 @@ public class HasagiSkill : MonoBehaviour
         }
         StartCooldown();
     }
+    public void UpdateHasagiSkill()
+    {
+        if(hasagi_coolDown > 0.5f)
+        {
+            hasagi_coolDown = hasagi_coolDown - 0.5f;
+        }
+    }
 
     private void StartCooldown()
     {
         isCooldown = true;
+        Debug.Log("cooldown");
         Invoke("HasagiFinishCooldown", hasagi_coolDown);
     }
     private void HasagiFinishCooldown()
     {
         isCooldown = false;
+        Debug.Log("cooldown end");
+
         Destroy(hasagi);
     }
 }

@@ -65,4 +65,8 @@ public abstract class Enemy : MonoBehaviour
         }
         controller.changeExp();
     }
+    public void ApplyKnockback(Vector2 knockbackDirection, float knockbackForce)
+    {
+        rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+    }
 }

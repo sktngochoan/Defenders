@@ -18,6 +18,8 @@ public abstract class Enemy : MonoBehaviour
     public Rigidbody2D rb;
     public Transform towerTransform;
     public Transform playerTransform;
+    public bool isHit = false;
+    public bool hit = false;
     public enum EnemyType
     {
         PlayerEnemy,
@@ -33,6 +35,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public void onHit(Transform playerTransform)
     {
+        isHit = true;
         isDead();
         UpdateHealthBar();
         Vector2 knockback_direaction = gameObject.transform.position - playerTransform.position;
@@ -41,7 +44,6 @@ public abstract class Enemy : MonoBehaviour
     public void UpdateHealthBar()
     {
         healthBar.UpdateHealthBar(currentHp, hp);
-        Debug.Log(currentHp);
     }
     public void isDead()
     {

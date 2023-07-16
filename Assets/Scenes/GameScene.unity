@@ -1952,7 +1952,7 @@ MonoBehaviour:
   - {fileID: 1676426763}
   - {fileID: 1437763701}
   - {fileID: 1842257994}
-  spawnInterval: 2
+  spawnInterval: 5
   initialPoolSize: 20
   maxPoolSize: 50
 --- !u!1 &541155834
@@ -2264,6 +2264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681a3e63126eb82469c78bd17298d697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasagiSkill: {fileID: 0}
 --- !u!1 &747957331
 GameObject:
   m_ObjectHideFlags: 0

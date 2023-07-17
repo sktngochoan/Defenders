@@ -90,7 +90,6 @@ public class PlayerEntity : MonoBehaviour
         lvl = lv;
         currentExp = ExpSave;
         currentHp = HpSave;
-        UpdateStatusBar();
     }
 
     public void UpdateStatusBar()

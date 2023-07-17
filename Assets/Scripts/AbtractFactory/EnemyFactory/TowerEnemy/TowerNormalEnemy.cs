@@ -22,5 +22,9 @@ public class TowerNormalEnemy : TowerEnemy
             isLoad = false;
         }
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        timer = gameObject.AddComponent<Timer>();
+        timer.Duration = 2f;
+        timer.Run();
     }
 }

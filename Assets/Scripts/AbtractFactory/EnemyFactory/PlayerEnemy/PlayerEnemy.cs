@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerEnemy : Enemy
 {
-    public float attackRange = 5f; // Khoảng cách tấn công
-
-    private bool isAttacking = false; // Kiểm tra xem kẻ thù đang tấn công hay không
-    public Transform playerTransformx;
+    public float attackRange = 2.4f;
+    public GameObject player;
 
     public override EnemyType GetEnemyType()
     {
@@ -25,17 +23,30 @@ public class PlayerEnemy : Enemy
     }
     public override void Movement()
     {
-        // if (playerTransform != null && !isAttacking)
-        // {
-        playerTransformx = GameObject.FindGameObjectWithTag("Hero").transform;
-
-        Vector3 targetPosition = playerTransformx.position;
+        player = GameObject.FindGameObjectWithTag("Hero");
+        Vector3 targetPosition = new Vector3(player.transform.position.x, player.transform.position.y + 1, 0);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, targetPosition) <= attackRange)
+
+        if (transform.position.x < player.transform.position.x)
         {
-            isAttacking = true;
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
-        // }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+    public override void checkDistance()
+    {
+        float distance = Vector2.Distance(transform.position, new Vector2(player.transform.position.x, player.transform.position.y + 1));
+        if (distance < attackRange)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Hero");
+            PlayerController script = playerObject.GetComponent<PlayerController>();
+            script.onHitPlayer(damage,gameObject.transform.position);
+            hit = true;
+        }
     }
 
 }

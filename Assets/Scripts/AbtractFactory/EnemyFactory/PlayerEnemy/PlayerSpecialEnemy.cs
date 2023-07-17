@@ -22,6 +22,15 @@ public class PlayerSpecialEnemy : PlayerEnemy
             base.InitializeBossStats();
         }
         currentHp = hp;
+        if (isLoad == true)
+        {
+            base.InitializeOnLoad();
+            isLoad = false;
+        }
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        timer = gameObject.AddComponent<Timer>();
+        timer.Duration = 2f;
+        timer.Run();
     }
 }

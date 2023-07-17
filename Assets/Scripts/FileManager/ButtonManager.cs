@@ -11,42 +11,20 @@ public class ButtonManager : MonoBehaviour
     private static string GetFilePath(string FolderName, string FileName = "")
     {
         string filePath;
-#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-        // mac
-        filePath = Path.Combine(Application.streamingAssetsPath, ("data/" + FolderName));
-
+        filePath = Path.Combine(Application.persistentDataPath, "data", FolderName);
         if (FileName != "")
-            filePath = Path.Combine(filePath, (FileName + ".txt"));
-#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-        // windows
-        filePath = Path.Combine(Application.persistentDataPath, ("data/" + FolderName));
-
-        if (FileName != "")
-            filePath = Path.Combine(filePath, (FileName + ".json"));
-#elif UNITY_ANDROID
-        // android
-        filePath = Path.Combine(Application.persistentDataPath, ("data/" + FolderName));
-
-        if(FileName != "")
-            filePath = Path.Combine(filePath, (FileName + ".json"));
-#elif UNITY_IOS
-        // ios
-        filePath = Path.Combine(Application.persistentDataPath, ("data/" + FolderName));
-
-        if(FileName != "")
-            filePath = Path.Combine(filePath, (FileName + ".txt"));
-#endif
+            filePath = Path.Combine(filePath, FileName + ".json");
         return filePath;
     }
     public void OnBtnSaveClick()
     {
-        string filePath = "";
-        filePath = GetFilePath("data", "playerData");
-        if (!Directory.Exists(Path.GetDirectoryName(filePath)))
+        // Player
+        string playerFilePath = "";
+        playerFilePath = GetFilePath("data", "playerData");
+        if (!Directory.Exists(Path.GetDirectoryName(playerFilePath)))
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+            Directory.CreateDirectory(Path.GetDirectoryName(playerFilePath));
         }
-        Debug.Log(filePath);
         GameObject Player = GameObject.Find("Hero");
         PlayerEntity playerEntity = Player.GetComponent<PlayerEntity>();
         PlayerModel playerModel = new PlayerModel();
@@ -55,28 +33,44 @@ public class ButtonManager : MonoBehaviour
         playerModel.currentHp = playerEntity.CurrentHp;
         playerModel.position = Player.transform.position;
         string playerJson = JsonUtility.ToJson(playerModel, true);
-        // Player 
-        File.WriteAllText(filePath, playerJson);
-    }
-    
-    
+        File.WriteAllText(playerFilePath, playerJson);
 
+        // Enemy
+        string enemyFilePath = "";
+        enemyFilePath = GetFilePath("data", "enemyData");
+        if (!Directory.Exists(Path.GetDirectoryName(enemyFilePath)))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(playerFilePath));
+        }
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        List<EnemyModel> enemyModelList = new List<EnemyModel>();
+        foreach (GameObject item in enemyList)
+        {
+            EnemyModel e = new EnemyModel();
+            Enemy enemy = item.GetComponent<Enemy>();
+            e.position = item.transform.position;
+            e.currentHp = enemy.currentHp;
+            e.typePool = enemy.typePool;
+
+            enemyModelList.Add(e);
+        }
+        string enemyJson = JsonHelper.ToJson<EnemyModel>(enemyModelList.ToArray());
+        File.WriteAllText(enemyFilePath, enemyJson);
+        // Other
+        PlayerPrefs.SetFloat("timeRemain", SurvivalTimer.Instance.timeRemaining);
+    }
     public void OnBtnLoadClick()
     {
         PlayerPrefs.SetInt("isLoad", 1);
-        Debug.Log(PlayerPrefs.GetInt("isLoad"));
         SceneManager.LoadScene("GameScene");
     }
-
     public void OnBtnStartClick()
     {
         PlayerPrefs.SetInt("isLoad", 0);
         SceneManager.LoadScene("GameScene");
     }
-
     public void OnBtnReturnClick()
     {
-        Debug.Log(12);
         SceneManager.LoadScene("TestLoadScene");
     }
 }

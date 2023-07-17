@@ -13,13 +13,12 @@ public abstract class Enemy : MonoBehaviour
     public float currentHpOnLoad;
     public bool isBoss = false;
     public bool isLoad = false;
+    public bool isHit = false;
+    public bool hit = false;
     public int typePool;
     public FloatingHealthBar healthBar;
     public Rigidbody2D rb;
-    public Transform towerTransform;
-    public Transform playerTransform;
-    public bool isHit = false;
-    public bool hit = false;
+    public Timer timer;
     public enum EnemyType
     {
         PlayerEnemy,
@@ -29,9 +28,15 @@ public abstract class Enemy : MonoBehaviour
     public abstract void InitializeBossStats();
     public abstract void InitializeOnLoad();
     public abstract void Movement();
+    public abstract void checkDistance();
     void Update()
     {
         Movement();
+        if(timer.Finished)
+        {
+            checkDistance();
+            timer.Run();
+        }
     }
     public void onHit(Transform playerTransform)
     {
@@ -49,9 +54,9 @@ public abstract class Enemy : MonoBehaviour
     {
         if(currentHp <= 0)
         {
-            EnermyGenerator.Instance.ReturnEnemy(gameObject, typePool);
+            StartCoroutine(ReturnEnemyAfterDelay());
             updateExp();
-            //Destroy(gameObject);
+            gameObject.GetComponentInChildren<Canvas>().enabled = false;
         }
     }
 
@@ -70,5 +75,11 @@ public abstract class Enemy : MonoBehaviour
     public void ApplyKnockback(Vector2 knockbackDirection, float knockbackForce)
     {
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+    }
+    private IEnumerator ReturnEnemyAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        //EnermyGenerator.Instance.ReturnEnemy(gameObject, typePool);
+        gameObject.SetActive(false);
     }
 }

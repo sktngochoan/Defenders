@@ -21,5 +21,10 @@ public class IdleState : BaseState
         {
             player.ChangeState(new DeadState(player));
         }
+        if(player.isHit == true)
+        {
+            player.ChangeState(new HurtState(player));
+            player.isHit = false;
+        }
     }
 }

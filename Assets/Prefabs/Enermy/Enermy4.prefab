@@ -550,13 +550,14 @@ MonoBehaviour:
   currentHpOnLoad: 0
   isBoss: 0
   isLoad: 0
+  isHit: 0
+  hit: 0
   typePool: 0
   healthBar: {fileID: 440858231}
   rb: {fileID: 0}
-  towerTransform: {fileID: 0}
-  playerTransform: {fileID: 0}
-  attackRange: 5
-  playerTransformx: {fileID: 0}
+  timer: {fileID: 0}
+  attackRange: 2.3
+  player: {fileID: 0}
   explosion_damage: 0
   explosion_distance: 0
   explosion_time: 0

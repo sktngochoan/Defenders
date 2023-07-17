@@ -1264,6 +1264,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124213720}
   m_CullTransparentMesh: 1
+--- !u!114 &179212913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 478139383, guid: 9793adf0ab3554149b855760b1e914c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7479401753586299316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af7818c7b143404987d107ef08b6d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &216946165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,10 +1955,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 8089049566260212734, guid: bdc8599de3999ce4b9ab7d7b5fa4af9d, type: 3}
-  - {fileID: 5865554076436197665, guid: d275a3c3b36700f4db9da0916518f9fe, type: 3}
-  - {fileID: 7056355428217182064, guid: 7d9a8e27c7fbf524187324caa3b3ac98, type: 3}
-  - {fileID: 6509922189172783848, guid: c1d9ff819fb13684798ebf56471b6567, type: 3}
+  - {fileID: 8089049566260212734, guid: 55de14a0da9402a4d8fce1c675045a6a, type: 3}
+  - {fileID: 5865554076436197665, guid: 82a7c9ec1d827c64ba192239decb48d1, type: 3}
+  - {fileID: 7056355428217182064, guid: 67cc653231ca61448aaf172bf512f7f7, type: 3}
+  - {fileID: 6509922189172783848, guid: 25f6b0424db27dd4abfa6c0bc8a3756c, type: 3}
   spawnPoints:
   - {fileID: 2074139124}
   - {fileID: 1676426763}
@@ -2264,7 +2276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681a3e63126eb82469c78bd17298d697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasagiSkill: {fileID: 0}
+  hasagiSkill: {fileID: 179212913}
 --- !u!1 &747957331
 GameObject:
   m_ObjectHideFlags: 0
@@ -16069,6 +16081,26 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &2144164908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4093018524543768114, guid: f8e0ecc63880f0d43a6ad0b351b89b0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4093018524922415078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2144164912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144164908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5558a3e7ae019ae458481bd07d9a91f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 200
+  currentHp: 0
 --- !u!1001 &4093018524922415078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16169,12 +16201,30 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1069073179}
+    - target: {fileID: 2139310683, guid: 9793adf0ab3554149b855760b1e914c9, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139310683, guid: 9793adf0ab3554149b855760b1e914c9, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2139310687, guid: 9793adf0ab3554149b855760b1e914c9, type: 3}
       propertyPath: m_Mass
       value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 2139310687, guid: 9793adf0ab3554149b855760b1e914c9, type: 3}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479401752017681381, guid: 9793adf0ab3554149b855760b1e914c9,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479401752017681382, guid: 9793adf0ab3554149b855760b1e914c9,
+        type: 3}
+      propertyPath: normalAttackRange
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7479401752017681401, guid: 9793adf0ab3554149b855760b1e914c9,
@@ -16200,12 +16250,12 @@ PrefabInstance:
     - target: {fileID: 7479401752017681403, guid: 9793adf0ab3554149b855760b1e914c9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -6.8
       objectReference: {fileID: 0}
     - target: {fileID: 7479401752017681403, guid: 9793adf0ab3554149b855760b1e914c9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7479401752017681403, guid: 9793adf0ab3554149b855760b1e914c9,
         type: 3}

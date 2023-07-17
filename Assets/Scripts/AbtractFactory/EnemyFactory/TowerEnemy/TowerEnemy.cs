@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TowerEnemy : Enemy
 {
-    public float attackRange = 5f; 
-
+    public float attackRange = 2f;
     private bool isAttacking = false;
     public Transform towerTransformx;
 
@@ -29,9 +29,23 @@ public class TowerEnemy : Enemy
         towerTransformx = GameObject.FindGameObjectWithTag("Tower").transform;
         Vector3 targetPosition = towerTransformx.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, targetPosition) <= attackRange)
+        if (transform.position.x < towerTransformx.position.x)
         {
-            isAttacking = true;
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+    public override void checkDistance()
+    {
+        float distance = Vector2.Distance(transform.position, towerTransformx.position);
+        if(distance < attackRange)
+        {
+            hit = true;
+            Tower.Instance.OnhitTower(damage);
         }
     }
 }

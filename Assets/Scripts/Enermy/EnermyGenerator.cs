@@ -80,6 +80,7 @@ public class EnermyGenerator : MonoBehaviour
             enemy.transform.position = model.position;
             enemyEntity.currentHpOnLoad = model.currentHp;
             enemyEntity.isLoad = true;
+            enemyEntity.typePool = model.typePool;
             enemy.SetActive(true);
         }
     }
@@ -108,11 +109,19 @@ public class EnermyGenerator : MonoBehaviour
             int spawnIndex = Random.Range(0, spawnPoints.Length);
             enemy.transform.position = spawnPoints[spawnIndex].transform.position;
             enemy.transform.rotation = spawnPoints[spawnIndex].transform.rotation;
+            enemy.GetComponentInChildren<Canvas>().enabled = true;
+            Enemy script = enemy.GetComponent<Enemy>();
+            script.currentHp = script.hp;
+            StartCoroutine(UpdateHealthBarEnemyCoroutine(script));
             enemy.SetActive(true);
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
+    private IEnumerator UpdateHealthBarEnemyCoroutine(Enemy enemy)
+    {
+        yield return new WaitUntil(() => enemy.healthBar != null);
+        enemy.UpdateHealthBar();
+    }
     private GameObject CreateEnemy(int enemyIndex)
     {
         GameObject enemyPrefab = enemyPrefabs[enemyIndex];

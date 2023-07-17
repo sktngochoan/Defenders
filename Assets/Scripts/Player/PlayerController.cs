@@ -6,24 +6,23 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
     [SerializeField] public VariableJoystick joystick;
-    [SerializeField] private FloatingHealthBar healthBar;
-    [SerializeField] private FloatingExpBar expBar;
+    [SerializeField] public FloatingHealthBar healthBar;
+    [SerializeField] public FloatingExpBar expBar;
     public PlayerEntity playerEntity;
     public GameObject swordRange;
-
     private Rigidbody2D rigid2D;
     public Animator animator;
     public SpriteRenderer sprite;
     private BaseState currentState;
     private float speed;
-
+    public bool isHit;
     private Vector2 move;
     void Start()
     {
         playerEntity = GetComponent<PlayerEntity>();
         joystick.gameObject.SetActive(true);
         speed = playerEntity.Speed;
-
+        isHit = false;
         rigid2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
@@ -82,15 +81,14 @@ public class PlayerController : MonoBehaviour
     {
         healthBar.UpdateHealthBar(playerEntity.CurrentHp, playerEntity.HP);
     }
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            Enemy enemyEntity = col.gameObject.GetComponent<Enemy>();
-            playerEntity.CurrentHp = playerEntity.CurrentHp - enemyEntity.damage;
-            changeHp();
-            //playerEntity.HP -= enemyEntity.damage;
 
-        }
+    public void onHitPlayer(float damage,Vector3 enemyPosition)
+    {
+        isHit = true;
+        playerEntity.CurrentHp -= damage;
+        Vector2 knockback_direaction = gameObject.transform.position - enemyPosition;
+        transform.position = new Vector2(transform.position.x + knockback_direaction.x, transform.position.y);
+        changeHp();
     }
+    
 }

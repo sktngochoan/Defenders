@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Test
     public float moveSpeed = 5f;
     void Start()
     {  
@@ -12,7 +11,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         movement();
-        
     }
     // Test
     private void movement()
@@ -21,5 +19,10 @@ public class Player : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0f) * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
+    }
+
+    public void onHitPlayer()
+    {
+
     }
 }

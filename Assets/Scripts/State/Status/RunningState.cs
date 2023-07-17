@@ -22,5 +22,9 @@ public class RunningState : BaseState
         {
             player.ChangeState(new DeadState(player));
         }
+        if (player.isHit == true)
+        {
+            player.ChangeState(new HurtState(player));
+        }
     }
 }

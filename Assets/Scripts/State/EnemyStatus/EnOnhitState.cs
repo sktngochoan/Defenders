@@ -17,8 +17,6 @@ public class EnOnhitState : EnemyBaseState
         {
             enemy.ChangeState(new EnRunningState(enemy));
             enemy.isHit = false;
-
-
         }
         if (enemy.hit == true)
         {

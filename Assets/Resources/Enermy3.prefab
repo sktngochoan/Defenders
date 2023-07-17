@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 1265187762}
   - component: {fileID: 1265187766}
   - component: {fileID: -6508478627638093460}
+  - component: {fileID: 173199734}
   m_Layer: 8
   m_Name: Enermy3
   m_TagString: Enemy
@@ -473,7 +474,7 @@ SpriteRenderer:
   m_SortingOrder: 5
   m_Sprite: {fileID: 1189900934, guid: 90dbeb3de214cda4a86dc17d8d050b9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 6, y: 6}
@@ -548,7 +549,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &-6508478627638093460
 MonoBehaviour:
@@ -568,12 +569,34 @@ MonoBehaviour:
   damage: 0
   isSlow: 0
   currentHp: 0
+  currentHpOnLoad: 0
   isBoss: 0
+  isLoad: 0
+  isHit: 0
+  hit: 0
   typePool: 0
   healthBar: {fileID: 968365591}
   rb: {fileID: 0}
-  towerTransform: {fileID: 0}
-  playerTransform: {fileID: 0}
-  attackRange: 5
-  playerTransformx: {fileID: 0}
+  timer: {fileID: 0}
+  attackRange: 2
+  player: {fileID: 0}
   slowSpeed: 0
+--- !u!114 &173199734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056355428217182064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50ac445f46cdc748b119e482525ba70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody2D: {fileID: 0}
+  animator: {fileID: 0}
+  sprite: {fileID: 0}
+  rb: {fileID: 0}
+  isHit: 0
+  hit: 0
+  force: 0

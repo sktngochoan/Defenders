@@ -16,7 +16,12 @@ public class EnAttackState : EnemyBaseState
         if (enemy.isHit == true)
         {
             enemy.ChangeState(new EnOnhitState(enemy));
-
+            enemy.isHit = false;
+        }
+        else
+        {
+            enemy.ChangeState(new EnRunningState(enemy));
+            enemy.isHit = false;
         }
     }
 }

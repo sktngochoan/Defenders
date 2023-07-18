@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class PlayerEnemyFactory : EnemyFactory
     private const string NormalEnemy = "Enermy3";
     private const string SpecialEnemy = "Enermy4";
 
-   public override GameObject CreateNormalEnemy()
+    public override GameObject CreateNormalEnemy()
     {
         var factoryTransformPosition = TurretTransform.transform.position;
         var normalEnemy = Resources.Load(NormalEnemy) as GameObject;

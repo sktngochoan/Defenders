@@ -25,7 +25,7 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = true;
         animator.SetTrigger("Attack");
 
-        Collider2D[] hitEnermy =  Physics2D.OverlapCircleAll(AttackPoint.position, normalAttackRange, enermyLayers);
+        Collider2D[] hitEnermy = Physics2D.OverlapCircleAll(AttackPoint.position, normalAttackRange, enermyLayers);
         foreach (Collider2D item in hitEnermy)
         {
             Enemy e = item.GetComponent<Enemy>();

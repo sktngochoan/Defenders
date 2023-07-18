@@ -33,7 +33,7 @@ public class DashSkill : MonoBehaviour
     }
     public void dash()
     {
-        if(isDashing)
+        if (isDashing)
         {
             return;
         }
@@ -53,9 +53,9 @@ public class DashSkill : MonoBehaviour
             {
                 dashTargetPosition = raycastHit2d.point - new Vector2(2, 2);
             }
-            else if(raycastHit2d.point.x < 0 && raycastHit2d.point.y > -2)
+            else if (raycastHit2d.point.x < 0 && raycastHit2d.point.y > -2)
             {
-                dashTargetPosition = raycastHit2d.point - new Vector2(-1 , 1);
+                dashTargetPosition = raycastHit2d.point - new Vector2(-1, 1);
             }
         }
         var currentVelocity = rigid2D.velocity;
@@ -76,3 +76,4 @@ public class DashSkill : MonoBehaviour
         isDashing = false;
     }
 }
+

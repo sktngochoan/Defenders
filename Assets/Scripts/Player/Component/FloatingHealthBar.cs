@@ -12,11 +12,12 @@ public class FloatingHealthBar : MonoBehaviour
     }
     private void Update()
     {
-        
+
     }
 
-    public void UpdateHealthBar(float currentHealth,float maxHealth)
+    public void UpdateHealthBar(float currentHealth, float maxHealth)
     {
-        healthSlider.value = currentHealth/maxHealth;
-    } 
+        healthSlider.value = currentHealth / maxHealth;
+    }
 }
+

@@ -574,11 +574,12 @@ MonoBehaviour:
   isLoad: 0
   isHit: 0
   hit: 0
+  inRangeAttack: 0
   typePool: 0
   healthBar: {fileID: 968365591}
   rb: {fileID: 0}
   timer: {fileID: 0}
-  attackRange: 2
+  attackRange: 1.5
   player: {fileID: 0}
   slowSpeed: 0
 --- !u!114 &173199734
@@ -596,6 +597,7 @@ MonoBehaviour:
   rigidbody2D: {fileID: 0}
   animator: {fileID: 0}
   sprite: {fileID: 0}
+  enemy: {fileID: 0}
   rb: {fileID: 0}
   isHit: 0
   hit: 0

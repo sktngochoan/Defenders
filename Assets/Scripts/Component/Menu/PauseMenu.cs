@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class ButtonManager : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
+    public static bool GameIsPause = false;
+    public GameObject PauseMenuUI;
     public string path;
+    public void Pause()
+    {
+        PauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPause = true;
+    }
+
+    public void Resume()
+    {
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPause = true;
+    }
+
     private static string GetFilePath(string FolderName, string FileName = "")
     {
         string filePath;
@@ -16,7 +31,7 @@ public class ButtonManager : MonoBehaviour
             filePath = Path.Combine(filePath, FileName + ".json");
         return filePath;
     }
-    public void OnBtnSaveClick()
+    public void Save()
     {
         // Player
         string playerFilePath = "";
@@ -59,15 +74,9 @@ public class ButtonManager : MonoBehaviour
         // Other
         PlayerPrefs.SetFloat("timeRemain", SurvivalTimer.Instance.timeRemaining);
     }
-    public void OnBtnLoadClick()
+
+    public void Quiz()
     {
-        PlayerPrefs.SetInt("isLoad", 1);
-        SceneManager.LoadScene("GameScene");
-    }
-    public void OnBtnStartClick()
-    {
-        PlayerPrefs.SetInt("isLoad", 0);
-        SceneManager.LoadScene("GameScene");
-        Time.timeScale = 1f;
+        SceneManager.LoadScene("StartMenuScene");
     }
 }

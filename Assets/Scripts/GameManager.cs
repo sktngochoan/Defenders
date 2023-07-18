@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.GetInt("isLoad") == 1)
         {
             loadData();
+            Time.timeScale = 1f;
         }
     }
     private static string GetFilePath(string FolderName, string FileName = "")

@@ -39,13 +39,26 @@ public class TowerEnemy : Enemy
         }
     }
 
-    public override void checkDistance()
+    public override bool checkDistance()
     {
-        float distance = Vector2.Distance(transform.position, towerTransformx.position);
-        if(distance < attackRange)
+        if (towerTransformx == null)
         {
-            hit = true;
-            Tower.Instance.OnhitTower(damage);
+            return false;
         }
+        float distance = Vector2.Distance(transform.position, towerTransformx.position);
+        if (distance < attackRange)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public override void Attack()
+    {
+        hit = true;
+        Tower.Instance.OnhitTower(damage);
     }
 }

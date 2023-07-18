@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         currentState = new IdleState(this);
         currentState.EnterState();
 
-        
+
     }
     void Update()
     {
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
             sprite.flipX = true;
         }
     }
-    
+
     public void ChangeState(BaseState newState)
     {
         currentState.ExitState();
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     }
     public void changeExp()
     {
-        expBar.UpdateExpBar(playerEntity.CurrentExp,playerEntity.Exp);
+        expBar.UpdateExpBar(playerEntity.CurrentExp, playerEntity.Exp);
     }
 
     public void changeHp()
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         healthBar.UpdateHealthBar(playerEntity.CurrentHp, playerEntity.HP);
     }
 
-    public void onHitPlayer(float damage,Vector3 enemyPosition)
+    public void onHitPlayer(float damage, Vector3 enemyPosition)
     {
         isHit = true;
         playerEntity.CurrentHp -= damage;
@@ -90,5 +90,5 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector2(transform.position.x + knockback_direaction.x, transform.position.y);
         changeHp();
     }
-    
+
 }

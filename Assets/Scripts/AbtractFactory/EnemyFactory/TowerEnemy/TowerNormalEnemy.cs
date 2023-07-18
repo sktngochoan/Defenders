@@ -16,7 +16,7 @@ public class TowerNormalEnemy : TowerEnemy
             base.InitializeBossStats();
         }
         currentHp = hp;
-        if(isLoad == true)
+        if (isLoad == true)
         {
             base.InitializeOnLoad();
             isLoad = false;
@@ -24,7 +24,7 @@ public class TowerNormalEnemy : TowerEnemy
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         timer = gameObject.AddComponent<Timer>();
-        timer.Duration = 2f;
+        timer.Duration = 3f;
         timer.Run();
     }
 }

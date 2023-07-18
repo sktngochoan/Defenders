@@ -18,7 +18,7 @@ public class RunningState : BaseState
         {
             player.ChangeState(new IdleState(player));
         }
-        if(player.playerEntity.CurrentHp <= 0)
+        if (player.playerEntity.CurrentHp <= 0)
         {
             player.ChangeState(new DeadState(player));
         }

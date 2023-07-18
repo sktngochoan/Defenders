@@ -17,11 +17,11 @@ public class IdleState : BaseState
         {
             player.ChangeState(new RunningState(player));
         }
-        if(player.playerEntity.HP <= 0)
+        if (player.playerEntity.HP <= 0)
         {
             player.ChangeState(new DeadState(player));
         }
-        if(player.isHit == true)
+        if (player.isHit == true)
         {
             player.ChangeState(new HurtState(player));
             player.isHit = false;

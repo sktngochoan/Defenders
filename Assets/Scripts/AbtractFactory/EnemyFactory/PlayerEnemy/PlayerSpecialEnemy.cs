@@ -17,7 +17,7 @@ public class PlayerSpecialEnemy : PlayerEnemy
         damage = 5;
         exp = 7;
         isSlow = false;
-        if(isBoss == true)
+        if (isBoss == true)
         {
             base.InitializeBossStats();
         }
@@ -34,3 +34,4 @@ public class PlayerSpecialEnemy : PlayerEnemy
         timer.Run();
     }
 }
+

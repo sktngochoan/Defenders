@@ -76,13 +76,13 @@ public class PlayerEntity : MonoBehaviour
         lvl = lvl + 1;
         UpdateStatusBar();
     }
-    
+
     public void UpdateSkill()
     {
         GameManager.Instance.ActiveUpdateSystem();
     }
 
-    public void UpdateEntityWithLv(int lv,float HpSave, float ExpSave)
+    public void UpdateEntityWithLv(int lv, float HpSave, float ExpSave)
     {
         HP = HP + 10 * lv;
         Damage = Damage + 1 * lv;

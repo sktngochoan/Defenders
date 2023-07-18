@@ -12,7 +12,7 @@ public class HasagiSkill : MonoBehaviour
     public float hasagi_speed = 10f;
     public bool isCooldown = false;
     private GameObject hasagi;
-    
+
 
     public void ActivateHasagiSkill()
     {
@@ -26,7 +26,7 @@ public class HasagiSkill : MonoBehaviour
         if (horizontalMoveJoystick == 0 && verticalMoveJoystick == 0)
         {
             var prefab = Resources.Load("HasagiSkills") as GameObject;
-            hasagi = Instantiate(prefab, new Vector3(transform.position.x,transform.position.y,0), Quaternion.identity);
+            hasagi = Instantiate(prefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             Rigidbody2D ballRigidbody = hasagi.GetComponent<Rigidbody2D>();
             ballRigidbody.AddForce(Vector3.right * hasagi_speed, ForceMode2D.Impulse);
         }
@@ -42,7 +42,7 @@ public class HasagiSkill : MonoBehaviour
     }
     public void UpdateHasagiSkill()
     {
-        if(hasagi_coolDown > 0.5f)
+        if (hasagi_coolDown > 0.5f)
         {
             hasagi_coolDown = hasagi_coolDown - 0.5f;
         }

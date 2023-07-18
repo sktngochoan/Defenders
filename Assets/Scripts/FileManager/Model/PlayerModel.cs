@@ -10,3 +10,4 @@ public class PlayerModel
     public float currentHp;
     public Vector3 position;
 }
+

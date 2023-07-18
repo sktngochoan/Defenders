@@ -37,16 +37,29 @@ public class PlayerEnemy : Enemy
         }
     }
 
-    public override void checkDistance()
+    public override bool checkDistance()
     {
+        if (player == null)
+        {
+            return false;
+        }
         float distance = Vector2.Distance(transform.position, new Vector2(player.transform.position.x, player.transform.position.y + 1));
         if (distance < attackRange)
         {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Hero");
-            PlayerController script = playerObject.GetComponent<PlayerController>();
-            script.onHitPlayer(damage,gameObject.transform.position);
-            hit = true;
+            return true;
         }
+        else
+        {
+            return false;
+        }
+    }
+
+    public override void Attack()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Hero");
+        PlayerController script = playerObject.GetComponent<PlayerController>();
+        script.onHitPlayer(damage, gameObject.transform.position);
+        hit = true;
     }
 
 }

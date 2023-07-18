@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
     public static Tower instance;
     public float hp;
     public float currentHp;
-
+    public Slider healthSlider;
     public static Tower Instance
     {
         get
@@ -21,8 +22,6 @@ public class Tower : MonoBehaviour
                     GameObject singletonObject = new GameObject(typeof(Tower).Name);
                     instance = singletonObject.AddComponent<Tower>();
                 }
-
-                //DontDestroyOnLoad(instance.gameObject);
             }
 
             return instance;
@@ -34,7 +33,6 @@ public class Tower : MonoBehaviour
         if (instance == null)
         {
             instance = this as Tower;
-            //DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -43,11 +41,18 @@ public class Tower : MonoBehaviour
     }
     private void Start()
     {
+        healthSlider.value = 1;
         currentHp = hp;
     }
 
     public void OnhitTower(float damage)
     {
         currentHp -= damage;
+        UpdateHealthBar(currentHp, hp);
+    }
+
+    public void UpdateHealthBar(float currentHealth, float maxHealth)
+    {
+        healthSlider.value = currentHealth / maxHealth;
     }
 }

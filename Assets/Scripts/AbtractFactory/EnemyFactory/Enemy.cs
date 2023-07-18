@@ -15,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
     public bool isLoad = false;
     public bool isHit = false;
     public bool hit = false;
+    public bool inRangeAttack = false;
     public int typePool;
     public FloatingHealthBar healthBar;
     public Rigidbody2D rb;
@@ -28,15 +29,23 @@ public abstract class Enemy : MonoBehaviour
     public abstract void InitializeBossStats();
     public abstract void InitializeOnLoad();
     public abstract void Movement();
-    public abstract void checkDistance();
+    public abstract bool checkDistance();
+    public abstract void Attack();
     void Update()
     {
-        Movement();
-        if(timer.Finished)
+        if (checkDistance() == true)
         {
-            checkDistance();
-            timer.Run();
+            if (timer.Finished)
+            {
+                Attack();
+                timer.Run();
+            }
         }
+        else
+        {
+            Movement();
+        }
+
     }
     public void onHit(Transform playerTransform)
     {
@@ -52,7 +61,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public void isDead()
     {
-        if(currentHp <= 0)
+        if (currentHp <= 0)
         {
             StartCoroutine(ReturnEnemyAfterDelay());
             updateExp();

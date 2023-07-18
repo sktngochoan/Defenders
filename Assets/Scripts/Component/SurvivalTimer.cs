@@ -49,12 +49,12 @@ public class SurvivalTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timeIsRunning)
+        if (timeIsRunning)
         {
-            if(timeRemaining >= 0) 
+            if (timeRemaining >= 0)
             {
                 timeRemaining += Time.deltaTime;
-                DisplayTime(timeRemaining); 
+                DisplayTime(timeRemaining);
             }
         }
     }

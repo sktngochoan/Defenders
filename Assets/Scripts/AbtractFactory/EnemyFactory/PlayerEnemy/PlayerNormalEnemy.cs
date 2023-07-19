@@ -23,6 +23,7 @@ public class PlayerNormalEnemy : PlayerEnemy
             base.InitializeOnLoad();
             isLoad = false;
         }
+        
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         timer = gameObject.AddComponent<Timer>();

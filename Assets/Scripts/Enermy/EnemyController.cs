@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour
         currentState = new EnRunningState(this);
         currentState.EnterState();
         rb = GetComponent<Rigidbody2D>();
+        
     }
     private void FixedUpdate()
     {

@@ -14,6 +14,8 @@ public class PlayerCombat : MonoBehaviour
     public HasagiSkill hasagiSkill;
     public DashSkill dashSkill;
     public PlayerEntity playerEntity;
+    public FreezeSkill freezeSkill;
+    public HealSkill healSkill;
     void Start()
     {
         playerEntity = GetComponent<PlayerEntity>();
@@ -45,7 +47,14 @@ public class PlayerCombat : MonoBehaviour
     {
         hasagiSkill.ActivateHasagiSkill();
     }
-
+    public void FreezeSkill()
+    {
+        freezeSkill.ActivateFreezeSkill();
+    }
+    public void HealSkill()
+    {
+        healSkill.ActivateHealSkill();
+    }
     public void DashSkill()
     {
         dashSkill.dash();

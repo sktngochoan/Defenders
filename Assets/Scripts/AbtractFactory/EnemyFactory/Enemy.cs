@@ -63,6 +63,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (currentHp <= 0)
         {
+            AudioManager.Play(AudioClipName.EnemyDead);
             StartCoroutine(ReturnEnemyAfterDelay());
             updateExp();
             gameObject.GetComponentInChildren<Canvas>().enabled = false;
@@ -77,6 +78,7 @@ public abstract class Enemy : MonoBehaviour
         entity.CurrentExp += exp;
         if (entity.CurrentExp >= entity.Exp)
         {
+            AudioManager.Play(AudioClipName.LvUp);
             entity.UpdateLv();
         }
         controller.changeExp();

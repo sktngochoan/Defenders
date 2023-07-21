@@ -78,5 +78,6 @@ public class PauseMenu : MonoBehaviour
     public void Quiz()
     {
         SceneManager.LoadScene("StartMenuScene");
+        Time.timeScale = 1f;
     }
 }

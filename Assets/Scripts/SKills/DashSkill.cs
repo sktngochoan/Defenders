@@ -45,7 +45,7 @@ public class DashSkill : MonoBehaviour
         {
             return;
         }
-
+        AudioManager.Play(AudioClipName.Dash);
         var horizontalMoveJoystick = joystick.Horizontal;
         var verticalMoveJoystick = joystick.Vertical;
         var dashDirection = new Vector2(horizontalMoveJoystick, verticalMoveJoystick).normalized;

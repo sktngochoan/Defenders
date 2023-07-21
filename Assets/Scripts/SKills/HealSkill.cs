@@ -68,9 +68,9 @@ public class HealSkill : MonoBehaviour
         timeText.gameObject.SetActive(true);
         UpdateCooldownUI();
         cooldownImage.enabled = true;
-
+        AudioManager.Play(AudioClipName.Heal);
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
-
+        PlayerController controller = hero.GetComponent<PlayerController>();
         if (hero != null)
         {
             PlayerEntity playerEntity = hero.GetComponent<PlayerEntity>();
@@ -83,6 +83,7 @@ public class HealSkill : MonoBehaviour
                     {
                         playerEntity.CurrentHp = 100;
                     }
+                    controller.changeHp();
                 }
             }
             else

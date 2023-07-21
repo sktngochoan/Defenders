@@ -12,7 +12,7 @@ public class PlayerSpecialEnemy : PlayerEnemy
         explosion_damage = 15;
         explosion_distance = 3;
         explosion_time = 2;
-        hp = 10;
+        hp = 50;
         speed = 1.5f;
         damage = 5;
         exp = 7;

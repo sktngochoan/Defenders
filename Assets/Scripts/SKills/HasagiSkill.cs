@@ -44,6 +44,7 @@ public class HasagiSkill : MonoBehaviour
         {
             return;
         }
+        AudioManager.Play(AudioClipName.Slash);
         var horizontalMoveJoystick = joystick.Horizontal;
         var verticalMoveJoystick = joystick.Vertical;
 

@@ -22,7 +22,7 @@ public class UpdateSystem : MonoBehaviour
 
     public void UpdateFrezz()
     {
-        freezeSkill.UpdateFreeSkill();
+        freezeSkill.UpdateFreezeSkill();
         GameManager.Instance.DeActiveUpdateSystem();
     }
 }

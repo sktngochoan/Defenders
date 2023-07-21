@@ -7,11 +7,12 @@ TagManager:
   - Enemy
   - Tower
   - Hero
+  - Hasagi
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hasagi
   - Water
   - UI
   - Tower

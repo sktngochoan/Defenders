@@ -56,6 +56,7 @@ public class PlayerEnemy : Enemy
 
     public override void Attack()
     {
+        AudioManager.Play(AudioClipName.EnemyAttack);
         GameObject playerObject = GameObject.FindGameObjectWithTag("Hero");
         PlayerController script = playerObject.GetComponent<PlayerController>();
         script.onHitPlayer(damage, gameObject.transform.position);

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public VariableJoystick joystick;
     [SerializeField] public FloatingHealthBar healthBar;
     [SerializeField] public FloatingExpBar expBar;
+    [SerializeField] public GameObject EndMenu;
     public PlayerEntity playerEntity;
     public GameObject swordRange;
     private Rigidbody2D rigid2D;
@@ -80,6 +81,12 @@ public class PlayerController : MonoBehaviour
     public void changeHp()
     {
         healthBar.UpdateHealthBar(playerEntity.CurrentHp, playerEntity.HP);
+        if(playerEntity.CurrentHp <= 0)
+        {
+            EndMenu.SetActive(true);
+            AudioManager.Play(AudioClipName.EndGame);
+            Time.timeScale = 0f;
+        }
     }
 
     public void onHitPlayer(float damage, Vector3 enemyPosition)

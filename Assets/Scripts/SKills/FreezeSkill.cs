@@ -62,6 +62,7 @@ public class FreezeSkill : MonoBehaviour
 
     private IEnumerator FreezeEnemies()
     {
+        AudioManager.Play(AudioClipName.Frezze);
         isFreezing = true;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float speed_old = 0;

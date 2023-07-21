@@ -59,6 +59,7 @@ public class TowerEnemy : Enemy
     public override void Attack()
     {
         hit = true;
+        AudioManager.Play(AudioClipName.EnemyAttack);
         Tower.Instance.OnhitTower(damage);
     }
 }

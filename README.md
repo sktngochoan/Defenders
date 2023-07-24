@@ -1,3 +1,2 @@
 # Defenders
- => Clone code and checkout to dev
- => RUN 
+ => Clone code và run project

@@ -5,23 +5,24 @@ using UnityEngine;
 public class UpdateSystem : MonoBehaviour
 {
     public HasagiSkill hasagiSkill;
-
+    public FreezeSkill freezeSkill;
+    public HealSkill healSkill;
     public void UpdateHasagi()
     {
-        Debug.Log(1);
         hasagiSkill.UpdateHasagiSkill();
         GameManager.Instance.DeActiveUpdateSystem();
     }
 
     public void UpdateHeal()
     {
-        Debug.Log(2);
+        healSkill.UpdateHealSkill();
+
         GameManager.Instance.DeActiveUpdateSystem();
     }
 
     public void UpdateFrezz()
     {
-        Debug.Log(3);
+        freezeSkill.UpdateFreezeSkill();
         GameManager.Instance.DeActiveUpdateSystem();
     }
 }

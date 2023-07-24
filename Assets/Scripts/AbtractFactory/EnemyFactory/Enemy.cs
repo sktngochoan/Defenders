@@ -63,6 +63,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (currentHp <= 0)
         {
+            AudioManager.Play(AudioClipName.EnemyDead);
             StartCoroutine(ReturnEnemyAfterDelay());
             updateExp();
             gameObject.GetComponentInChildren<Canvas>().enabled = false;
@@ -77,6 +78,7 @@ public abstract class Enemy : MonoBehaviour
         entity.CurrentExp += exp;
         if (entity.CurrentExp >= entity.Exp)
         {
+            AudioManager.Play(AudioClipName.LvUp);
             entity.UpdateLv();
         }
         controller.changeExp();
@@ -90,5 +92,12 @@ public abstract class Enemy : MonoBehaviour
         yield return new WaitForSeconds(1f);
         //EnermyGenerator.Instance.ReturnEnemy(gameObject, typePool);
         gameObject.SetActive(false);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Hasagi"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

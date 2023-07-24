@@ -19,4 +19,12 @@ public class PlayerButtonController : MonoBehaviour
     {
         playerCombat.DashSkill();
     }
+    public void freezeSkill()
+    {
+        playerCombat.FreezeSkill();
+    }
+    public void healSkill()
+    {
+        playerCombat.HealSkill();
+    }
 }

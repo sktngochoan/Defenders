@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     public float hp;
     public float currentHp;
     public Slider healthSlider;
+    public GameObject EndMenu;
     public static Tower Instance
     {
         get
@@ -49,6 +50,12 @@ public class Tower : MonoBehaviour
     {
         currentHp -= damage;
         UpdateHealthBar(currentHp, hp);
+        if(currentHp <= 0)
+        {
+            AudioManager.Play(AudioClipName.EndGame);
+            EndMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     public void UpdateHealthBar(float currentHealth, float maxHealth)

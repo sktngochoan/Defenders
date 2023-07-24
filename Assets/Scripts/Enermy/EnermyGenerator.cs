@@ -87,6 +87,9 @@ public class EnermyGenerator : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
+        float timeElapsed = 0f; // Thời gian đã trôi qua
+        float waitTime = spawnInterval; // Thời gian chờ hiện tại
+
         while (true)
         {
             int enemyIndex = Random.Range(0, enemyPrefabs.Length);
@@ -94,6 +97,7 @@ public class EnermyGenerator : MonoBehaviour
             GameObject enemy = pool.Find(e => !e.activeInHierarchy);
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             enemyScript.typePool = enemyIndex;
+
             if (enemy == null)
             {
                 if (pool.Count < maxPoolSize)
@@ -106,6 +110,7 @@ public class EnermyGenerator : MonoBehaviour
                     continue;
                 }
             }
+
             int spawnIndex = Random.Range(0, spawnPoints.Length);
             enemy.transform.position = spawnPoints[spawnIndex].transform.position;
             enemy.transform.rotation = spawnPoints[spawnIndex].transform.rotation;
@@ -114,9 +119,24 @@ public class EnermyGenerator : MonoBehaviour
             script.currentHp = script.hp;
             StartCoroutine(UpdateHealthBarEnemyCoroutine(script));
             enemy.SetActive(true);
-            yield return new WaitForSeconds(spawnInterval);
+
+            yield return new WaitForSeconds(waitTime);
+
+            timeElapsed += waitTime;
+
+            if (timeElapsed >= 120f) 
+            {
+                timeElapsed = 0f; 
+                waitTime -= 1f; 
+                waitTime = Mathf.Max(waitTime, 3f);
+            }
+            if(timeElapsed <= 3f)
+            {
+                waitTime = spawnInterval;
+            }
         }
     }
+
     private IEnumerator UpdateHealthBarEnemyCoroutine(Enemy enemy)
     {
         yield return new WaitUntil(() => enemy.healthBar != null);

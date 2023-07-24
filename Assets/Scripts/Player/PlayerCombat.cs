@@ -14,6 +14,8 @@ public class PlayerCombat : MonoBehaviour
     public HasagiSkill hasagiSkill;
     public DashSkill dashSkill;
     public PlayerEntity playerEntity;
+    public FreezeSkill freezeSkill;
+    public HealSkill healSkill;
     void Start()
     {
         playerEntity = GetComponent<PlayerEntity>();
@@ -24,7 +26,7 @@ public class PlayerCombat : MonoBehaviour
     {
         isAttacking = true;
         animator.SetTrigger("Attack");
-
+        AudioManager.Play(AudioClipName.Slash);
         Collider2D[] hitEnermy = Physics2D.OverlapCircleAll(AttackPoint.position, normalAttackRange, enermyLayers);
         foreach (Collider2D item in hitEnermy)
         {
@@ -45,7 +47,14 @@ public class PlayerCombat : MonoBehaviour
     {
         hasagiSkill.ActivateHasagiSkill();
     }
-
+    public void FreezeSkill()
+    {
+        freezeSkill.ActivateFreezeSkill();
+    }
+    public void HealSkill()
+    {
+        healSkill.ActivateHealSkill();
+    }
     public void DashSkill()
     {
         dashSkill.dash();

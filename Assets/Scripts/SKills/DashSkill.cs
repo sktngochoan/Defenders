@@ -1,42 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DashSkill : MonoBehaviour
 {
-    // Dash
-    [SerializeField]
-    private float dashDistance = 4f;
-    [SerializeField]
-    private float dashCooldown = 5f;
+    [SerializeField] private float dashDistance = 4f;
+    [SerializeField] private float dashCooldown = 5f;
     [SerializeField] public VariableJoystick joystick;
-    [SerializeField]
-    private LayerMask dashLayerMask;
+    [SerializeField] private LayerMask dashLayerMask;
     private bool isDashing;
     private Rigidbody2D rigid2D;
     public GameObject player;
+
+    public Image cooldownImage;
+    public TextMeshProUGUI timeText;
+    private float currentCooldownTime = 0f;
+
     void Start()
     {
         rigid2D = player.GetComponentInParent<Rigidbody2D>();
+        cooldownImage.fillAmount = 0;
+        timeText.gameObject.SetActive(false);
+        cooldownImage.enabled = false;
     }
+
     void Update()
     {
         if (isDashing)
         {
             return;
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dash();
         }
     }
+
     public void dash()
     {
         if (isDashing)
         {
             return;
         }
+        AudioManager.Play(AudioClipName.Dash);
         var horizontalMoveJoystick = joystick.Horizontal;
         var verticalMoveJoystick = joystick.Vertical;
         var dashDirection = new Vector2(horizontalMoveJoystick, verticalMoveJoystick).normalized;
@@ -66,14 +75,36 @@ public class DashSkill : MonoBehaviour
         rigid2D.velocity = currentVelocity;
         StartCooldown();
     }
+
     private void StartCooldown()
     {
         isDashing = true;
-        Invoke("DashFinishCooldown", dashCooldown);
+        currentCooldownTime = dashCooldown;
+        timeText.gameObject.SetActive(true);
+        UpdateCooldownUI();
+        cooldownImage.enabled = true;
+
+        StartCoroutine(DashCooldownRoutine());
     }
-    private void DashFinishCooldown()
+
+    private IEnumerator DashCooldownRoutine()
     {
+        while (currentCooldownTime > 0)
+        {
+            currentCooldownTime -= Time.deltaTime;
+            UpdateCooldownUI();
+            yield return null;
+        }
+
         isDashing = false;
+        timeText.gameObject.SetActive(false);
+        cooldownImage.enabled = false;
+    }
+
+    private void UpdateCooldownUI()
+    {
+        float fillAmount = currentCooldownTime / dashCooldown;
+        cooldownImage.fillAmount = fillAmount;
+        timeText.text = Mathf.RoundToInt(currentCooldownTime).ToString();
     }
 }
-

@@ -579,7 +579,7 @@ MonoBehaviour:
   healthBar: {fileID: 2045161091}
   rb: {fileID: 0}
   timer: {fileID: 0}
-  attackRange: 3
+  attackRange: 3.5
   towerTransformx: {fileID: 0}
 --- !u!114 &1838163386
 MonoBehaviour:
